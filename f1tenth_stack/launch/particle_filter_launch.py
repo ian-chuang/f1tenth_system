@@ -37,13 +37,13 @@ def generate_launch_description():
         'particle_filter.yaml'
     )
     pf_config_dict = yaml.safe_load(open(pf_config, 'r'))
-    map_name = pf_config_dict['particle_filter']['ros__parameters']['map_name']
+    map_yaml_path = pf_config_dict['particle_filter']['ros__parameters']['map_yaml_path']
 
-    # get maps directory
-    map_directory = os.path.join(
-        get_package_share_directory('f1tenth_stack'),
-        'maps'
-    )
+    # # get maps directory
+    # map_directory = os.path.join(
+    #     get_package_share_directory('f1tenth_stack'),
+    #     'maps'
+    # )
     
     # get map path
     # if os.path.exists(os.path.join(map_directory, map_name + '.png')):
@@ -52,8 +52,8 @@ def generate_launch_description():
     #     map_path = os.path.join(map_directory, map_name + '.pgm')
     
     # get map yaml
-    if os.path.exists(os.path.join(map_directory, map_name + '.yaml')):
-        map_yaml = os.path.join(map_directory, map_name + '.yaml')
+    # if os.path.exists(os.path.join(map_directory, map_name + '.yaml')):
+    #     map_yaml = os.path.join(map_directory, map_name + '.yaml')
 
     # particle filter node
     pf_node = Node(
@@ -71,7 +71,7 @@ def generate_launch_description():
     map_server_node = Node(
         package='nav2_map_server',
         executable='map_server',
-        parameters=[{'yaml_filename': map_yaml},
+        parameters=[{'yaml_filename': map_yaml_path},
                     {'topic': 'map'},
                     {'frame_id': 'map'},
                     {'output': 'screen'},
