@@ -14,29 +14,16 @@ class FramePublisher(Node):
     def timer_callback(self):
         t = TransformStamped()
         t.header.stamp = self.get_clock().now().to_msg()
-        t.header.frame_id = 'base_link'
-        t.child_frame_id = 'laser'
-        t.transform.translation.x = 0.27
+        t.header.frame_id = 'laser'
+        t.child_frame_id = 'base'
+        t.transform.translation.x = 0.0
         t.transform.translation.y = 0.0
-        t.transform.translation.z = 0.11
+        t.transform.translation.z = -0.11
         t.transform.rotation.x = 0.0
         t.transform.rotation.y = 0.0
         t.transform.rotation.z = 0.0
         t.transform.rotation.w = 1.0
         self.br.sendTransform(t)
-
-        t2 = TransformStamped()
-        t2.header.stamp = self.get_clock().now().to_msg()
-        t2.header.frame_id = 'base_link'
-        t2.child_frame_id = 'odom'
-        t2.transform.translation.x = 0.0
-        t2.transform.translation.y = 0.0
-        t2.transform.translation.z = 0.0
-        t2.transform.rotation.x = 0.0
-        t2.transform.rotation.y = 0.0
-        t2.transform.rotation.z = 0.0
-        t2.transform.rotation.w = 1.0
-        self.br.sendTransform(t2)
 
 
 def main():

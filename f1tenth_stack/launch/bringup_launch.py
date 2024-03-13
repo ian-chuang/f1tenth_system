@@ -120,6 +120,11 @@ def generate_launch_description():
         parameters=[LaunchConfiguration('mux_config')],
         remappings=[('ackermann_cmd_out', 'ackermann_drive')]
     )
+    tf_publisher_node = Node(
+        package='f1tenth_stack',
+        executable='tf_publisher',
+        name='tf_publisher'
+    )
     static_tf_node = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
@@ -136,6 +141,7 @@ def generate_launch_description():
     # ld.add_action(throttle_interpolator_node)
     ld.add_action(urg_node)
     ld.add_action(ackermann_mux_node)
-    ld.add_action(static_tf_node)
+    ld.add_action(tf_publisher_node)
+    #ld.add_action(static_tf_node)
 
     return ld
