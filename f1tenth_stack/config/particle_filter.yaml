@@ -14,7 +14,7 @@ particle_filter:
     viz: 1
     max_viz_particles: 60
     # ray marching method
-    range_method: 'cddt' # use "rmgpu" for CUDA enabled
+    range_method: 'rmgpu' # use "rmgpu" for CUDA enabled
     theta_discretization: 112
     # range data filtering
     max_range: 10
